@@ -3,42 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Portfolio</title>
+    <meta name="theme-color" content="#f3f6f2">
+    <title>Tower of Hanoi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Responsive Portfolio</h1>
+    <header class="topbar">
+        <a class="brand" href="#top" aria-label="Tower of Hanoi home">
+            <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span>THINK<span class="brand-dot">.</span></span>
+        </a>
+        <span class="topbar-note">A CLASSIC LOGIC PUZZLE <span>／</span> 01</span>
     </header>
-    <nav id="nav-bar">
-        <button id="nav-toggle" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul id="nav-list" class="nav-list">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <main>
-        <section id="about">
-            <h2>About</h2>
-            <p>Here you can write about yourself.</p>
+
+    <main id="top" class="page-shell">
+        <section class="intro" aria-labelledby="page-title">
+            <div>
+                <p class="eyebrow"><span class="eyebrow-line"></span> THE TOWER OF HANOI</p>
+                <h1 id="page-title">Make room<br>for <em>one more move.</em></h1>
+            </div>
+            <p class="intro-copy">Move the whole stack to the last tower. One disk at a time, and never place a larger disk on a smaller one.</p>
         </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <p>Here you can list your projects.</p>
+
+        <section class="game-panel" aria-label="Tower of Hanoi game">
+            <div class="toolbar">
+                <label class="disk-picker" for="disk-count">
+                    <span>DISKS</span>
+                    <select id="disk-count" aria-label="Number of disks">
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5" selected>5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </label>
+                <span class="toolbar-divider" aria-hidden="true"></span>
+                <p class="goal-copy">Move every disk to <strong>Tower 3</strong></p>
+                <button id="reset-button" class="button button-quiet" type="button">Reset</button>
+            </div>
+
+            <div id="board" class="board" aria-label="Puzzle towers"></div>
+
+            <div class="game-footer">
+                <p id="game-status" class="game-status" role="status" aria-live="polite">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    Pick a tower, then choose where to place its top disk.
+                </p>
+                <div class="stats" aria-label="Game statistics">
+                    <div class="stat"><span class="stat-label">MOVES</span><strong id="move-count">0</strong></div>
+                    <div class="stat"><span class="stat-label">MINIMUM</span><strong id="minimum-moves">31</strong></div>
+                    <div class="stat"><span class="stat-label">TIME</span><strong id="elapsed-time">00:00</strong></div>
+                </div>
+            </div>
+
+            <div class="solver-bar">
+                <div class="solver-actions">
+                    <button id="solve-button" class="button button-primary" type="button"><span aria-hidden="true">▶</span> Auto solve</button>
+                    <button id="pause-button" class="button button-secondary" type="button" disabled><span aria-hidden="true">Ⅱ</span> Pause</button>
+                    <button id="step-button" class="button button-secondary" type="button"><span aria-hidden="true">↷</span> Step</button>
+                </div>
+                <label class="speed-control" for="speed-range">
+                    <span>SPEED</span>
+                    <input id="speed-range" type="range" min="1" max="5" value="3" aria-label="Auto solve speed">
+                    <strong id="speed-value">Normal</strong>
+                </label>
+            </div>
         </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Here you can provide your contact information.</p>
-        </section>
+
+        <p class="tip"><span aria-hidden="true">↳</span> Start with the smallest disk. The fewest possible moves for 5 disks is 31.</p>
     </main>
-    <footer>
-        <p>&copy; 2023 Your Name. All rights reserved.</p>
-    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
